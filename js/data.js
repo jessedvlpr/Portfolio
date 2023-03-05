@@ -2,11 +2,10 @@ data = `
 {
     "1": {
         "title": "Pythtris",
-        "delims": [
+        "constraints": [
             "python",
             "pygame",
-            "game",
-            "school"
+            "game"
         ],
         "description": "This project was my first real venture into the Python programming language, it is a Tetris game made using the Pygame library, for a school project.",
         "thumbnail": "./thumbnails/Pythtris.png",
@@ -15,7 +14,7 @@ data = `
     },
     "2": {
         "title": "Portfolio",
-        "delims": [
+        "constraints": [
             "javascript",
             "vanilla",
             "website"
@@ -27,13 +26,11 @@ data = `
     },
     "3": {
         "title": "GlyphCrafter",
-        "delims": [
+        "constraints": [
             "javascript",
             "vanilla",
             "website",
-            "game",
-            "drawing",
-            "magic"
+            "game"
         ],
         "description": "A magical Glyph drawing game/tool using SVG to accept user-drawn, symmetrical, circular, smooth shaped 'glyphs', which will then be combined with other glyphs in the same drawing to produce a chemical-reaction-like effect, but magical!",
         "thumbnail": "./thumbnails/GlyphCrafter.png",
