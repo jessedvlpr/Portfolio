@@ -1,5 +1,7 @@
 let ribbons = document.getElementsByClassName('ribbon')
-let projectContainer = document.getElementsByClassName('projects-list')[0]
+let projectContainer = document.getElementById('projects')
+let constraintContainer = document.getElementById('constraints')
+let projectsData = JSON.parse(data)
 for (let i = 0; i < ribbons.length; i++) {
     ribbons[i].onclick = function () { return clicked(this) }
     ribbons[i].onmouseenter = function () { return grow(this) }
@@ -10,11 +12,13 @@ for (let i = 0; i < ribbons.length; i++) {
 function grow(el) {
     el.style.paddingTop = 20 + "px"
 }
+
 function shrink(el) {
     if (el.getAttribute("toggled") == "false") {
         el.style.paddingTop = 10 + "px"
     }
 }
+
 function clicked(el) {
     let els = el.parentElement.getElementsByTagName('*')
     if (el.getAttribute("toggled") == "true") {
@@ -25,12 +29,13 @@ function clicked(el) {
             els[i].style.color = "#fff"
         }
         projectContainer.innerHTML = ""
+        constraintContainer.innerHTML = ""
         return
     }
     el.setAttribute("toggled", "true")
     el.style.boxShadow = ""
     el.style.color = "#fff"
-    populateProjects([el.id.split("_")[0]])
+    populateProjects([el.id.split("-")[0]])
     grow(el)
     for (let i = 0; i < els.length; i++) {
         if (els[i] == el) { continue }
@@ -40,69 +45,141 @@ function clicked(el) {
         shrink(els[i])
     }
 }
-function populateProjects(filters) {
+
+function populateProjects(constraints) {
     projectContainer.innerHTML = ""
-    projectsData = JSON.parse(data)
+    constraintContainer.innerHTML = ""
+    let tagarr = []
+
     for (let i = 0; i < Object.keys(projectsData).length; i++) {
-        let delims = Object.values(projectsData[Object.keys(projectsData)[i]]["delims"])
-        if (!filters.includes('all') && !filters.every(r => delims.includes(r))) continue
-        let element = document.createElement('div')
-        let titleElement = document.createElement('div')
+        let project = projectsData[Object.keys(projectsData)[i]]
 
-        element.className = "project"
-        element.style.backgroundImage = `url(${projectsData[Object.keys(projectsData)[i]]["thumbnail"]})`
+        if (!constraints.includes('all') && !constraints.every(r => project["constraints"].includes(r))) continue
 
-        titleElement.className = "project-name"
-        titleElement.innerHTML = projectsData[Object.keys(projectsData)[i]]["title"]
-
-        element.onclick = function () {
-            let thumbnail = projectsData[Object.keys(projectsData)[i]]["thumbnail"]
-            let title = projectsData[Object.keys(projectsData)[i]]["title"]
-            let tags = projectsData[Object.keys(projectsData)[i]]["delims"]
-            let description = projectsData[Object.keys(projectsData)[i]]["description"]
-            let weblink = projectsData[Object.keys(projectsData)[i]]["weblink"]
-            let repolink = projectsData[Object.keys(projectsData)[i]]["repolink"]
-            return popup(thumbnail, title, tags, description, weblink, repolink)
+        for (let j = 0; j < project["constraints"].length; j++) {
+            if (!tagarr.includes(project["constraints"][j])) {
+                tagarr.push(project["constraints"][j])
+            }
         }
 
-        element.appendChild(titleElement)
+        projectContainer.appendChild(createProject(project))
+    }
 
-        projectContainer.appendChild(element)
+    for (let i = 0; i < tagarr.length; i++) {
+        let tag = document.createElement('p')
+        tag.textContent = tagarr[i]
+        tag.classList.add("tag")
+        tag.style.marginTop = "10px"
+        tag.style.cursor = "pointer"
+        constraintContainer.appendChild(tag)
     }
 }
 
-function popup(thumbnail, title, tags, description, weblink, repolink) {
+function createProject(project) {
+    let element = document.createElement('div')
+    element.classList.add("project")
+    element.style.zIndex = "0"
+
+    let elementTitle = document.createElement('h2')
+    elementTitle.textContent = project["title"]
+    elementTitle.style.zIndex = "2"
+    elementTitle.style.textAlign = "center"
+    elementTitle.style.margin = "0 auto"
+    elementTitle.style.marginTop = "10%"
+
+    let elementImg = document.createElement('img')
+    elementImg.classList.add("absolute-centered-xy")
+    elementImg.style.zIndex = "-1"
+    elementImg.alt = project["title"]
+    elementImg.src = window.location.origin + project["thumbnail"].slice(1)
+
+    let elementLine = document.createElement('hr')
+    elementLine.classList.add("absolute-centered-x")
+    elementLine.style.width = "85%"
+    elementLine.style.bottom = "50px"
+
+    let elementTags = document.createElement('div')
+    elementTags.style.position = "absolute"
+    elementTags.style.bottom = "0px"
+    elementTags.style.margin = "15px"
+    elementTags.style.marginBottom = "10px"
+    elementTags.style.maxHeight = "35px"
+    elementTags.style.overflow = "hidden"
+    console.log(project["constraints"])
+    for (let i = 0; i < project["constraints"].length; i++) {
+        let tag = document.createElement('p')
+        tag.textContent = project["constraints"][i]
+        tag.classList.add("tag")
+        elementTags.appendChild(tag)
+    }
+
+    element.onclick = function () {
+        return createPopup(project)
+    }
+
+    // element.appendChild(elementImg)
+    element.appendChild(elementTitle)
+    element.appendChild(elementLine)
+    element.appendChild(elementTags)
+
+    return element
+}
+
+function createPopup(project) {
+
     if (document.getElementsByClassName('popup').length > 0) return
+
+    let thumbnail = project["thumbnail"]
+    let title = project["title"]
+    let tags = project["constraints"]
+    let description = project["description"]
+    let weblink = project["weblink"]
+    let repolink = project["repolink"]
+
     let element = document.createElement('div')
     element.className = "popup"
 
     let titleElement = document.createElement('h1')
+    titleElement.style.width = "100%"
+    titleElement.style.textAlign = "center"
     titleElement.textContent = title
-    titleElement.className = "popup-title"
 
-    let tagsList = document.createElement('ul')
-    tagsList.className = "popup-tags"
+    let tagsElement = document.createElement('ul')
     for (let i = 0; i < tags.length; i++) {
-        let tag = document.createElement('li')
-        tag.className = "popup-tag"
-        tag.innerHTML = "- " + tags[i]
-        tagsList.appendChild(tag)
+        let tagElement = document.createElement('li')
+        tagElement.innerHTML = tags[i]
+        tagsElement.appendChild(tagElement)
     }
 
     let descriptionElement = document.createElement('div')
-    descriptionElement.className = "popup-description"
+    descriptionElement.style.width = "80%"
+    descriptionElement.style.marginLeft = "10%"
+    descriptionElement.style.marginRight = "10%"
+    descriptionElement.style.textAlign = "center"
     descriptionElement.textContent = description
 
     let closeElement = document.createElement('a')
-    closeElement.className = "popup-close"
-    closeElement.innerHTML = "X"
+    closeElement.style.position = "absolute"
+    closeElement.style.right = "20px"
+    closeElement.style.top = "20px"
+    closeElement.onmouseenter = function () {
+        closeElement.style.backgroundColor = "#222"
+    }
+    closeElement.onmouseleave = function () {
+        closeElement.style.backgroundColor = "#333"
+    }
+    closeElement.style.cursor = "pointer"
+    closeElement.style.padding = "10px"
+    closeElement.style.backgroundColor = "#333"
+    closeElement.textContent = "X"
     closeElement.onclick = function () {
         document.body.removeChild(element)
     }
 
     element.appendChild(titleElement)
-    element.appendChild(tagsList)
+    element.appendChild(tagsElement)
     element.appendChild(descriptionElement)
     element.appendChild(closeElement)
+
     document.body.appendChild(element)
 }
