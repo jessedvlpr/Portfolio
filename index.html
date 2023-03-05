@@ -11,25 +11,18 @@
 
     <body>
         <header>
-            <div class="name">
-                <h1>Jesse Groves: Developer & Designer</h1>
+            <h1 class="white absolute-centered-xy max-content">Select a ribbon to see my projects!</h1>
+            <div id="ribbons" class="absolute-centered-x">
+                <div id="all-ribbon" class="ribbon">All Projects</div>
+                <div id="javascript-ribbon" class="ribbon">JavaScript</div>
+                <div id="python-ribbon" class="ribbon">Python</div>
+                <div id="java-ribbon" class="ribbon">Java</div>
+                <div id="other-ribbon" class="ribbon">Other</div>
             </div>
         </header>
-        <div class="wrapper">
-            <div class="content">
-                <div class="projects">
-                    <div class="top-bar">
-                        <div class="ribbons">
-                            <div id="all_ribbon" class="ribbon">All Projects</div>
-                            <div id="java_ribbon" class="ribbon">Java</div>
-                            <div id="javascript_ribbon" class="ribbon">JavaScript</div>
-                            <div id="python_ribbon" class="ribbon">Python</div>
-                            <div id="other_ribbon" class="ribbon">Other</div>
-                        </div>
-                    </div>
-                    <div class="projects-list"></div>
-                </div>
-            </div>
+        <div id="wrapper">
+            <div id="constraints"></div>
+            <div id="projects"></div>
         </div>
         <footer>
             <hr>
