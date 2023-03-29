@@ -1,77 +1,137 @@
 let ribbons = document.getElementsByClassName('ribbon')
-let projectContainer = document.getElementById('projects')
-let constraintContainer = document.getElementById('constraints')
+let topContainer = document.getElementById('top')
+let mainContainer = document.getElementById('main')
 let projectsData = JSON.parse(data)
+let tagarr = []
+
 for (let i = 0; i < ribbons.length; i++) {
-    ribbons[i].onclick = function () { return clicked(this) }
-    ribbons[i].onmouseenter = function () { return grow(this) }
-    ribbons[i].onmouseleave = function () { return shrink(this) }
-    ribbons[i].setAttribute("toggled", "false")
-}
+    ribbons[i].onclick = function () {
+        ribbonClicked(this)
 
-function grow(el) {
-    el.style.paddingTop = 20 + "px"
-}
-
-function shrink(el) {
-    if (el.getAttribute("toggled") == "false") {
-        el.style.paddingTop = 10 + "px"
     }
-}
-
-function clicked(el) {
-    let els = el.parentElement.getElementsByTagName('*')
-    if (el.getAttribute("toggled") == "true") {
-        el.setAttribute("toggled", "false")
-        shrink(el)
-        for (let i = 0; i < els.length; i++) {
-            els[i].style.boxShadow = ""
-            els[i].style.color = "#fff"
+    ribbons[i].onmouseenter = function () {
+        if (!this.classList.contains('toggled')) {
+            this.style.paddingTop = 20 + "px"
         }
-        projectContainer.innerHTML = ""
-        constraintContainer.innerHTML = ""
+    }
+    ribbons[i].onmouseleave = function () {
+        if (!this.classList.contains('toggled')) {
+            this.style.paddingTop = 10 + "px"
+        }
+    }
+    ribbons[i].classList.remove('toggled')
+}
+ribbonClicked(document.getElementById('about-ribbon'))
+
+function ribbonClicked(el) {
+    let els = el.parentElement.getElementsByTagName('*')
+    if (el.classList.contains('toggled')) {
+        el.classList.remove('toggled')
+        el.style.paddingTop = 10 + "px"
+        for (let i = 0; i < els.length; i++) {
+            els[i].classList.remove('bottom-shadow')
+            els[i].classList.remove('inactive-text')
+            els[i].classList.add('active-text')
+        }
+        mainContainer.innerHTML = ""
+        mainContainer.removeAttribute("style")
+        topContainer.innerHTML = ""
+        topContainer.removeAttribute("style")
         return
     }
-    el.setAttribute("toggled", "true")
-    el.style.boxShadow = ""
-    el.style.color = "#fff"
-    populateProjects([el.id.split("-")[0]])
-    grow(el)
+    mainContainer.innerHTML = ""
+    mainContainer.removeAttribute("style")
+    topContainer.innerHTML = ""
+    topContainer.removeAttribute("style")
+
+    el.classList.add('toggled')
+    el.style.paddingTop = 20 + "px"
+    el.classList.remove('bottom-shadow')
+    el.classList.remove('inactive-text')
+    el.classList.add('active-text')
+
+    let ribbon = el.id.split("-")[0]
+    switch (ribbon) {
+        case "about":
+            mainContainer.innerHTML = about
+            mainContainer.style.paddingTop = "50px"
+            break
+        case "projects":
+            populateProjects(ribbon)
+            populateConstraints()
+            break
+        case "experience":
+            mainContainer.innerHTML = experience
+            mainContainer.style.paddingTop = "50px"
+            break
+        case "education":
+            mainContainer.innerHTML = education
+            mainContainer.style.paddingTop = "50px"
+            break
+        case "contact":
+            mainContainer.innerHTML = contact
+            mainContainer.style.paddingTop = "50px"
+            break
+    }
+
     for (let i = 0; i < els.length; i++) {
         if (els[i] == el) { continue }
-        els[i].setAttribute("toggled", "false")
-        els[i].style.boxShadow = "#000 0px -20px 20px -20px inset"
-        els[i].style.color = "#444"
-        shrink(els[i])
+        els[i].classList.remove('toggled')
+        els[i].classList.add('bottom-shadow')
+        els[i].classList.add('inactive-text')
+        els[i].style.paddingTop = 10 + "px"
     }
 }
 
-function populateProjects(constraints) {
-    projectContainer.innerHTML = ""
-    constraintContainer.innerHTML = ""
-    let tagarr = []
-
-    for (let i = 0; i < Object.keys(projectsData).length; i++) {
-        let project = projectsData[Object.keys(projectsData)[i]]
-
-        if (!constraints.includes('all') && !constraints.every(r => project["constraints"].includes(r))) continue
-
-        for (let j = 0; j < project["constraints"].length; j++) {
-            if (!tagarr.includes(project["constraints"][j])) {
-                tagarr.push(project["constraints"][j])
-            }
-        }
-
-        projectContainer.appendChild(createProject(project))
-    }
+function populateConstraints() {
+    topContainer.innerHTML = ""
+    let cons = []
 
     for (let i = 0; i < tagarr.length; i++) {
         let tag = document.createElement('p')
         tag.textContent = tagarr[i]
-        tag.classList.add("tag")
+        tag.classList.add('tag')
         tag.style.marginTop = "10px"
         tag.style.cursor = "pointer"
-        constraintContainer.appendChild(tag)
+        tag.classList.add('inactive-text')
+        tag.onclick = function () {
+            if (!this.classList.contains('toggled')) {
+                this.classList.add('toggled')
+                this.classList.add('active-text')
+                this.classList.remove('inactive-text')
+                cons.push(tagarr[i])
+                populateProjects(cons)
+                return
+            }
+            this.classList.remove('toggled')
+            this.classList.remove('active-text')
+            this.classList.add('inactive-text')
+            cons.splice(cons.indexOf(tagarr[i]), 1)
+            populateProjects(cons)
+        }
+        topContainer.appendChild(tag)
+    }
+}
+function populateProjects(constraints) {
+    mainContainer.innerHTML = ""
+
+    for (let i = 0; i < Object.keys(projectsData).length; i++) {
+        let project = projectsData[Object.keys(projectsData)[i]]
+        if (!constraints.includes('projects') && !constraints.every(r => project["constraints"].includes(r))) continue
+
+        for (let j = 0; j < project["constraints"].length; j++) {
+            if (!tagarr.includes(project["constraints"][j]) && !constraints.includes(project["constraints"][j])) {
+                // if (!tagarr.includes(project["constraints"][j])) {
+                tagarr.push(project["constraints"][j])
+            }
+        }
+        let projectElement = createProject(project)
+        mainContainer.appendChild(projectElement)
+        let tags = projectElement.getElementsByClassName("tag")
+    }
+
+    if (mainContainer.childNodes.length <= 0) {
+        mainContainer.innerHTML = "No projects found."
     }
 }
 
@@ -105,7 +165,7 @@ function createProject(project) {
     elementTags.style.marginBottom = "10px"
     elementTags.style.maxHeight = "35px"
     elementTags.style.overflow = "hidden"
-    console.log(project["constraints"])
+    // console.log(project["constraints"])
     for (let i = 0; i < project["constraints"].length; i++) {
         let tag = document.createElement('p')
         tag.textContent = project["constraints"][i]
