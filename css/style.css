@@ -1,3 +1,9 @@
+:root{
+    --bg-colour: rgb(15, 157, 182);
+    --fg-colour: rgb(42, 41, 119);
+    --text-colour: rgb(209, 112, 112);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,16 +11,16 @@
 }
 
 body {
-    background-color: #111;
+    background-color: var(--bg-colour);
     overflow-x: hidden;
 }
 
 header {
     position: relative;
     text-align: center;
-    background-color: #222;
-    box-shadow: #000 0px -20px 20px -20px inset;
-    color: #eee;
+    background-color: var(--bg-colour);
+    /* box-shadow: #000 0px -20px 20px -20px inset; */
+    color: var(--text-colour);
     width: 100%;
     height: 100px;
     font-weight: bold;
@@ -29,9 +35,14 @@ section {
 #wrapper {
     position: relative;
     min-height: 100vh;
-    color: #eee;
+    background-color: var(--fg-colour);
+    color: var(--text-colour);
     width: 80%;
     margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20,20,20)) 0px 20px 20px 0px;
+    overflow-y: hidden;
 }
 
 #ribbons {
@@ -57,7 +68,7 @@ section {
     width: -moz-fit-content;
     width: fit-content;
     text-align: center;
-    background-color: #111;
+    background-color: var(--fg-colour);
     transition: padding-top .25s, color .1s;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -67,6 +78,7 @@ section {
 #main {
     /* overflow-y: auto; */
     font-size: 20px;
+    margin: 40px
 }
 
 .project {
@@ -75,8 +87,8 @@ section {
     display: inline-block;
     text-align: left;
     background-color: #222;
-    color: #eee;
-    box-shadow: #000 0px 0px 10px 2px inset;
+    color: var(--text-colour);
+    box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20,20,20)) 0px 0px 10px 2px inset;
     border-radius: 5px;
     margin: 10px;
     width: 250px;
@@ -101,14 +113,14 @@ section {
 }
 
 .project:hover {
-    box-shadow: #000 0px 0px 10px 5px inset;
+    box-shadow: var(--shadow-colour) 0px 0px 10px 5px inset;
 }
 
 .popup {
     position: fixed;
     transform: translate(-50%, -50%);
     background-color: #000;
-    color: #eee;
+    color: var(--text-colour);
     border-radius: 10px;
     width: 80%;
     height: 60%;
@@ -118,27 +130,30 @@ section {
 
 footer {
     padding: 20px;
+    margin-top: 100px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: color-mix(in srgb, var(--fg-colour), rgb(20,20,20));
+    color: var(--text-colour);
 }
 
 footer a {
     text-decoration: none;
     font-weight: bold;
-    color: #888;
+    color: var(--text-colour);
     transition: all 0.25s ease-in-out 0s;
     margin-right: 10px;
     font-size: 15px;
 }
 
 footer a:hover {
-    color: #eee;
+    color: var(--text-colour);
 }
 
 footer p {
-    color: #666;
+    color: var(--text-colour);
     font-size: 14px;
 }
 
 hr {
-    color: #666;
+    border-color: var(--text-colour);
 }

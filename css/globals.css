@@ -32,7 +32,7 @@
 }
 
 .active-text {
-    color: #eee
+    color: var(--text-colour)
 }
 
 .black {
@@ -44,11 +44,11 @@
 }
 
 .inactive-text {
-    color: #444;
+    color: var(--text-colour);
 }
 
 .bottom-shadow {
-    box-shadow: #000 0px -20px 20px -20px inset;
+    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20,20,20)) 0px -20px 20px -20px inset;
 }
 
 /* .top-shadow {

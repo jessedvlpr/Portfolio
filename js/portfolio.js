@@ -54,7 +54,6 @@ function ribbonClicked(el) {
     switch (ribbon) {
         case "about":
             mainContainer.innerHTML = about
-            mainContainer.style.paddingTop = "50px"
             break
         case "projects":
             populateProjects(ribbon)
