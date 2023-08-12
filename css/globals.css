@@ -44,11 +44,11 @@
 }
 
 .inactive-text {
-    color: var(--text-colour);
+    color: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
 }
 
 .bottom-shadow {
-    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20,20,20)) 0px -20px 20px -20px inset;
+    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20)) 0px -20px 20px -20px inset;
 }
 
 /* .top-shadow {

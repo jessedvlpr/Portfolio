@@ -24,83 +24,71 @@ for (let i = 0; i < ribbons.length; i++) {
 ribbonClicked(document.getElementById('about-ribbon'))
 
 function ribbonClicked(el) {
-    let els = el.parentElement.getElementsByTagName('*')
-    if (el.classList.contains('toggled')) {
-        el.classList.remove('toggled')
-        el.style.paddingTop = 10 + "px"
-        for (let i = 0; i < els.length; i++) {
-            els[i].classList.remove('bottom-shadow')
-            els[i].classList.remove('inactive-text')
-            els[i].classList.add('active-text')
-        }
-        mainContainer.innerHTML = ""
-        mainContainer.removeAttribute("style")
-        topContainer.innerHTML = ""
-        topContainer.removeAttribute("style")
-        return
-    }
-    mainContainer.innerHTML = ""
-    mainContainer.removeAttribute("style")
-    topContainer.innerHTML = ""
-    topContainer.removeAttribute("style")
+    if (el.classList.contains('toggled')) return;
+    let els = el.parentElement.getElementsByTagName('*');
+    mainContainer.innerHTML = "";
+    mainContainer.removeAttribute("style");
+    topContainer.innerHTML = "";
+    topContainer.removeAttribute("style");
 
-    el.classList.add('toggled')
-    el.style.paddingTop = 20 + "px"
-    el.classList.remove('bottom-shadow')
-    el.classList.remove('inactive-text')
-    el.classList.add('active-text')
+    el.classList.add('toggled');
+    el.style.paddingTop = 20 + "px";
+    el.classList.remove('bottom-shadow');
+    el.classList.remove('inactive-text');
+    el.classList.add('active-text');
 
-    let ribbon = el.id.split("-")[0]
+    let ribbon = el.id.split("-")[0];
     switch (ribbon) {
         case "about":
-            mainContainer.innerHTML = about
-            break
+            mainContainer.innerHTML = about;
+            break;
         case "projects":
-            populateProjects(ribbon)
-            populateConstraints()
-            break
+            populateProjects(ribbon);
+            populateConstraints();
+            break;
         case "experience":
-            mainContainer.innerHTML = experience
-            mainContainer.style.paddingTop = "50px"
-            break
+            mainContainer.innerHTML = experience;
+            mainContainer.style.paddingTop = "50px";
+            break;
         case "education":
-            mainContainer.innerHTML = education
-            mainContainer.style.paddingTop = "50px"
-            break
+            mainContainer.innerHTML = education;
+            mainContainer.style.paddingTop = "50px";
+            break;
         case "contact":
-            mainContainer.innerHTML = contact
-            mainContainer.style.paddingTop = "50px"
-            break
+            mainContainer.innerHTML = contact;
+            mainContainer.style.paddingTop = "50px";
+            break;
     }
 
     for (let i = 0; i < els.length; i++) {
-        if (els[i] == el) { continue }
-        els[i].classList.remove('toggled')
-        els[i].classList.add('bottom-shadow')
-        els[i].classList.add('inactive-text')
-        els[i].style.paddingTop = 10 + "px"
+        if (els[i] == el) continue;
+        els[i].classList.remove('toggled');
+        els[i].classList.add('bottom-shadow');
+        els[i].classList.remove('active-text');
+        els[i].classList.add('inactive-text');
+        els[i].style.paddingTop = 10 + "px";
     }
 }
 
 function populateConstraints() {
-    topContainer.innerHTML = ""
-    let cons = []
+    topContainer.innerHTML = "";
+    let cons = [];
 
     for (let i = 0; i < tagarr.length; i++) {
-        let tag = document.createElement('p')
-        tag.textContent = tagarr[i]
-        tag.classList.add('tag')
-        tag.style.marginTop = "10px"
-        tag.style.cursor = "pointer"
-        tag.classList.add('inactive-text')
+        let tag = document.createElement('p');
+        tag.textContent = tagarr[i];
+        tag.classList.add('tag');
+        tag.style.marginTop = "10px";
+        tag.style.cursor = "pointer";
+        tag.classList.add('inactive-text');
         tag.onclick = function () {
             if (!this.classList.contains('toggled')) {
-                this.classList.add('toggled')
-                this.classList.add('active-text')
-                this.classList.remove('inactive-text')
-                cons.push(tagarr[i])
-                populateProjects(cons)
-                return
+                this.classList.add('toggled');
+                this.classList.add('active-text');
+                this.classList.remove('inactive-text');
+                cons.push(tagarr[i]);
+                populateProjects(cons);
+                return;
             }
             this.classList.remove('toggled')
             this.classList.remove('active-text')
