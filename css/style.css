@@ -102,9 +102,7 @@ section {
 
 #navbar-widget {
     text-align: center;
-    margin: auto;
-    width: auto;
-    position: sticky;
+    position: fixed;
     cursor: pointer;
     z-index: 1;
     top: 10px;
