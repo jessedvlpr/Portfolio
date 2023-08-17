@@ -278,4 +278,20 @@ function colourPicker(area) {
 function changeColour(area) {
     let c = getCookie(area).split(',');
     document.documentElement.style.setProperty('--' + area + '-colour', `rgb(${c[0]}, ${c[1]}, ${c[2]})`);
+    let hexC = '#';
+    for (let i = 0; i < c.length; i++) {
+        c[i] = Number(c[i]).toString(16);
+        if (c[i].length < 2) c[i] = '0' + c[i];
+        hexC += c[i];
+    }
+    document.getElementById('colour-picker-' + area).value = hexC;
+}
+
+function resetColours() {
+    setCookie('fg', [12, 45, 126], 365);
+    setCookie('bg', [4, 97, 123], 365);
+    setCookie('text', [255, 255, 255], 365);
+    changeColour('fg');
+    changeColour('bg');
+    changeColour('text');
 }
