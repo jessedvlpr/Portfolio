@@ -209,15 +209,7 @@ function createPopup(project) {
     closeElement.style.position = "absolute"
     closeElement.style.right = "20px"
     closeElement.style.top = "20px"
-    closeElement.onmouseenter = function () {
-        closeElement.style.backgroundColor = "#222"
-    }
-    closeElement.onmouseleave = function () {
-        closeElement.style.backgroundColor = "#333"
-    }
-    closeElement.style.cursor = "pointer"
-    closeElement.style.padding = "10px"
-    closeElement.style.backgroundColor = "#333"
+    closeElement.classList.add('circle-button')
     closeElement.textContent = "X"
     closeElement.onclick = function () {
         document.body.removeChild(element)
@@ -229,4 +221,39 @@ function createPopup(project) {
     element.appendChild(closeElement)
 
     document.body.appendChild(element)
+}
+
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    let n = name + "=";
+    let ca = decodeURIComponent(document.cookie).split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(n) == 0) {
+            return c.substring(n.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    let username = getCookie("username");
+    if (username != "") {
+        alert("Welcome again " + username);
+    } else {
+        username = prompt("Please enter your name:", "");
+        if (username != "" && username != null) {
+            setCookie("username", username, 365);
+        }
+    }
 }
