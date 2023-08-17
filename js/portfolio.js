@@ -1,8 +1,16 @@
 let ribbons = document.getElementsByClassName('ribbon')
 let topContainer = document.getElementById('top')
-let mainContainer = document.getElementById('main')
+let mainContainer = document.getElementById('projects')
 let projectsData = JSON.parse(data)
 let tagarr = []
+
+if (!checkCookie('fg')) setCookie('fg', [12, 45, 126], 365);
+if (!checkCookie('bg')) setCookie('bg', [4, 97, 123], 365);
+if (!checkCookie('text')) setCookie('text', [255, 255, 255], 365);
+
+changeColour('fg')
+changeColour('bg')
+changeColour('text')
 
 for (let i = 0; i < ribbons.length; i++) {
     ribbons[i].onclick = function () {
@@ -37,26 +45,31 @@ function ribbonClicked(el) {
     el.classList.remove('inactive-text');
     el.classList.add('active-text');
 
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('projects').style.display = 'none';
+    document.getElementById('experience').style.display = 'none';
+    document.getElementById('education').style.display = 'none';
+    document.getElementById('contact').style.display = 'none';
+
+
     let ribbon = el.id.split("-")[0];
     switch (ribbon) {
         case "about":
-            mainContainer.innerHTML = about;
+            document.getElementById('about').style.display = 'block';
             break;
         case "projects":
+            document.getElementById('projects').style.display = 'block';
             populateProjects(ribbon);
             populateConstraints();
             break;
         case "experience":
-            mainContainer.innerHTML = experience;
-            mainContainer.style.paddingTop = "50px";
+            document.getElementById('experience').style.display = 'block';
             break;
         case "education":
-            mainContainer.innerHTML = education;
-            mainContainer.style.paddingTop = "50px";
+            document.getElementById('education').style.display = 'block';
             break;
         case "contact":
-            mainContainer.innerHTML = contact;
-            mainContainer.style.paddingTop = "50px";
+            document.getElementById('contact').style.display = 'block';
             break;
     }
 
@@ -78,8 +91,6 @@ function populateConstraints() {
         let tag = document.createElement('p');
         tag.textContent = tagarr[i];
         tag.classList.add('tag');
-        tag.style.marginTop = "10px";
-        tag.style.cursor = "pointer";
         tag.classList.add('inactive-text');
         tag.onclick = function () {
             if (!this.classList.contains('toggled')) {
@@ -246,14 +257,25 @@ function getCookie(name) {
     return "";
 }
 
-function checkCookie() {
-    let username = getCookie("username");
-    if (username != "") {
-        alert("Welcome again " + username);
+function checkCookie(name) {
+    let cookie = getCookie(name);
+    if (cookie != "" && cookie != null) {
+        return true;
     } else {
-        username = prompt("Please enter your name:", "");
-        if (username != "" && username != null) {
-            setCookie("username", username, 365);
-        }
+        return false;
     }
+}
+
+function colourPicker(area) {
+    let pckr = document.getElementById('colour-picker-' + area).value;
+    let r = parseInt(pckr.substring(1, 3), 16);
+    let g = parseInt(pckr.substring(3, 5), 16);
+    let b = parseInt(pckr.substring(5, 7), 16);
+    setCookie(area, [r, g, b], 365);
+    changeColour(area)
+}
+
+function changeColour(area) {
+    let c = getCookie(area).split(',');
+    document.documentElement.style.setProperty('--' + area + '-colour', `rgb(${c[0]}, ${c[1]}, ${c[2]})`);
 }

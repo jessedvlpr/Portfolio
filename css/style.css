@@ -51,6 +51,11 @@ section {
     height: 100%;
 }
 
+path {
+    stroke: var(--text-colour);
+    fill: var(--text-colour);
+}
+
 #wrapper {
     position: relative;
     min-height: 100vh;
@@ -101,32 +106,50 @@ section {
     margin: 40px
 }
 
+.main-text-box {
+    display: none;
+}
+
+#colour-picker-box {
+    color: var(--text-colour);
+    margin: 20px;
+    z-index: 3;
+    text-align: right;
+}
+
+.colour-picker {
+    background-color: transparent;
+    border: transparent;
+}
+
 .circle-button {
     text-align: center;
     cursor: pointer;
     font-weight: bolder;
     background-color: var(--fg-colour);
-    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20)) 5px 5px 20px -5px;
+    box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20, 20, 20)) 5px 5px 20px -5px;
     aspect-ratio: 1/1;
     height: 2.5em;
+    line-height: 2.5em;
     border-radius: 50%;
 }
 
-#navbar-widget {
-    position: absolute;
-    z-index: 3;
-    top: 10px;
-    left: 350px;
-    margin: 15px;
-    transition: left .25s;
-}
-
-#navbar-widget>* {
+.circle-button>* {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#navbar-widget {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 350px;
+    margin: 15px;
+    transition: left .25s;
+}
+
 
 .circle-button:hover {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
@@ -202,18 +225,25 @@ section {
     transition: box-shadow .25s;
 }
 
+#projects {
+    text-align: center;
+}
+
 .tag {
-    font-weight: 600;
+    font-weight: bold;
+    cursor: pointer;
     padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
     margin: 2px;
-    margin-bottom: 10px;
     -webkit-user-select: none;
     user-select: none;
+    text-align: center;
     font-size: 16px;
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
     border: 3px solid color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 15px;
     width: -webkit-fill-available;
     width: -moz-fit-content;
     width: fit-content;
@@ -262,6 +292,7 @@ footer a:hover {
 footer p {
     color: var(--text-colour);
     font-size: 14px;
+    margin-top: 10px;
 }
 
 hr {

@@ -17,15 +17,26 @@
         <div id="navbar">
             <div class="circle-button" id="navbar-widget" onclick="toggleNavbar()">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
-                    <path stroke="white" fill="white"
+                    <path
                         d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
                     </path>
                 </svg>
+            </div>
+            <div id="logo">
+
             </div>
             <a class="navbutton" href="./files/Resume.pdf" download onclick="toggleNavbar()">Download Resume</a>
             <a class="navbutton" onclick="toggleNavbar()">hello</a>
             <a class="navbutton" onclick="toggleNavbar()">hello</a>
             <a class="navbutton" onclick="toggleNavbar()">hello</a>
+            <div id="colour-picker-box">
+                <label for="colour-picker-fg">Foreground Colour</label>
+                <input class="colour-picker" oninput="colourPicker('fg')" id="colour-picker-fg" type="color"><br>
+                <label for="colour-picker-fg">Background Colour</label>
+                <input class="colour-picker" oninput="colourPicker('bg')" id="colour-picker-bg" type="color"><br>
+                <label for="colour-picker-fg">Text Colour</label>
+                <input class="colour-picker" oninput="colourPicker('text')" id="colour-picker-text" type="color"><br>
+            </div>
         </div>
         <header>
             <div id="ribbons" class="absolute-centered-x">
@@ -41,11 +52,19 @@
                 <section id="constraints"></section>
             </div>
             <div id="main">
-                <section id="about"></section>
-                <section id="projects"></section>
-                <section id="experience"></section>
-                <section id="education"></section>
-                <section id="contact"></section>
+                <section class="main-text-box" id="about">
+                    Hello I'm Jesse.
+                </section>
+                <section class="main-text-box" id="projects"></section>
+                <section class="main-text-box" id="experience">
+
+                </section>
+                <section class="main-text-box" id="education">
+
+                </section>
+                <section class="main-text-box" id="contact">
+
+                </section>
             </div>
         </div>
         <footer>
