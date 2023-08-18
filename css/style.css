@@ -197,6 +197,11 @@ path {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(0, 0, 0));
 }
 
+#socials a:hover path {
+    stroke: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+    fill: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+}
+
 #screen-cover {
     position: fixed;
     top: 0;
@@ -223,10 +228,6 @@ path {
     width: 250px;
     height: 300px;
     transition: box-shadow .25s;
-}
-
-#projects {
-    text-align: center;
 }
 
 .tag {
