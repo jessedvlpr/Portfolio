@@ -103,7 +103,15 @@ path {
 #main {
     /* overflow-y: auto; */
     font-size: 20px;
-    margin: 40px
+    margin: 40px;
+}
+
+#main a {
+    color: var(--text-colour);
+}
+
+#main a:hover {
+    color: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
 }
 
 .main-text-box {
@@ -120,6 +128,7 @@ path {
 .colour-picker {
     background-color: transparent;
     border: transparent;
+    cursor: pointer;
 }
 
 .circle-button {
@@ -160,14 +169,16 @@ path {
     display: flex;
     flex-direction: column;
     text-align: center;
+    /* overflow-y: auto; */
     padding-top: 20px;
     padding-bottom: 20px;
     top: 0;
+    bottom: 0;
     left: -350px;
     width: 60%;
     max-width: 300px;
     min-width: 200px;
-    height: 100%;
+    /* height: 100%; */
     z-index: 2;
     background-color: var(--fg-colour);
     transition: left .25s;
@@ -215,6 +226,32 @@ path {
     pointer-events: none;
 }
 
+#experience {
+    text-align: center;
+}
+
+#experience div {
+    display: inline-block;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color .25s;
+}
+
+#experience div:hover {
+    background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
+}
+
+#experience div:hover path {
+    fill: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+    stroke: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+}
+
+#experience label {
+    pointer-events: none;
+}
+
 .project {
     position: relative;
     cursor: pointer;
@@ -228,6 +265,10 @@ path {
     width: 250px;
     height: 300px;
     transition: box-shadow .25s;
+}
+
+.project:hover {
+    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(0, 0, 0)) 0px 0px 20px 10px inset;
 }
 
 .tag {
@@ -248,10 +289,6 @@ path {
     width: -webkit-fill-available;
     width: -moz-fit-content;
     width: fit-content;
-}
-
-.project:hover {
-    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20)) 0px 0px 10px 5px inset;
 }
 
 .popup {
