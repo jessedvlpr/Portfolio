@@ -198,8 +198,6 @@ function createPopup(project) {
     element.className = "popup"
 
     let titleElement = document.createElement('h1')
-    titleElement.style.width = "100%"
-    titleElement.style.textAlign = "center"
     titleElement.textContent = title
 
     let tagsElement = document.createElement('ul')
@@ -210,10 +208,6 @@ function createPopup(project) {
     }
 
     let descriptionElement = document.createElement('div')
-    descriptionElement.style.width = "80%"
-    descriptionElement.style.marginLeft = "10%"
-    descriptionElement.style.marginRight = "10%"
-    descriptionElement.style.textAlign = "center"
     descriptionElement.textContent = description
 
     let closeElement = document.createElement('a')
@@ -234,6 +228,32 @@ function createPopup(project) {
     document.body.appendChild(element)
 }
 
+let expBoxIsOpen = false;
+let expBox = document.getElementById('exp-box');
+let openBox;
+function toggleExpBox(e) {
+    if (expBoxIsOpen) {
+        closeExpBox();
+        if (e != openBox) {
+            setTimeout(function () { openExpBox(e) }, 500);
+        }
+    }
+    else {
+        openExpBox(e);
+    }
+}
+
+function openExpBox(e) {
+    expBoxIsOpen = true;
+    openBox = e;
+    expBox.innerHTML = e.id
+    expBox.style.width = `100%`;
+}
+
+function closeExpBox(e) {
+    expBoxIsOpen = false;
+    expBox.style.width = "0px";
+}
 
 function setCookie(name, value, days) {
     const d = new Date();

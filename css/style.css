@@ -104,6 +104,7 @@ path {
     /* overflow-y: auto; */
     font-size: 20px;
     margin: 40px;
+    height: 100%;
 }
 
 #main a {
@@ -230,26 +231,44 @@ path {
     text-align: center;
 }
 
-#experience div {
+#experience>div {
     display: inline-block;
+    width: -moz-fit-content;
     width: fit-content;
+}
+
+#experience .exp-highlight {
+    transition: background-color .25s;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
-    transition: background-color .25s;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
-#experience div:hover {
+#experience .exp-highlight:hover {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
 }
 
-#experience div:hover path {
+#experience .exp-highlight:hover path {
     fill: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
     stroke: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
 }
 
-#experience label {
+#experience p {
     pointer-events: none;
+}
+
+#experience #exp-box {
+    width: 0;
+    height: 50vh;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    transition: width .5s;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: color-mix(in srgb, var(--fg-colour), rgb(0, 0, 0)) 0px 0px 15px 10px inset;
+    background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
 }
 
 .project {
@@ -293,16 +312,24 @@ path {
 
 .popup {
     position: fixed;
+    display: flex;
+    flex-direction: column;
     transform: translate(-50%, -50%);
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
     box-shadow: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20)) 0px 0px 10px 5px inset;
     color: var(--text-colour);
     border-radius: 10px;
     border: 5px solid #000;
+    padding: 50px;
     width: 80%;
     height: 60%;
     top: 50%;
     left: 50%;
+}
+
+.popup>h1 {
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
 footer {
