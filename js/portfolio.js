@@ -8,9 +8,9 @@ if (!checkCookie('pf-fg')) setCookie('pf-fg', [12, 45, 126], 365);
 if (!checkCookie('pf-bg')) setCookie('pf-bg', [4, 97, 123], 365);
 if (!checkCookie('pf-text')) setCookie('pf-text', [255, 255, 255], 365);
 
-changeColour('pf-fg')
-changeColour('pf-bg')
-changeColour('pf-text')
+changeColour('fg')
+changeColour('bg')
+changeColour('text')
 
 for (let i = 0; i < ribbons.length; i++) {
     ribbons[i].onclick = function () {
@@ -299,7 +299,7 @@ function colourPicker(area) {
 }
 
 function changeColour(area) {
-    let c = getCookie(area).split(',');
+    let c = getCookie("pf-" + area).split(',');
     document.documentElement.style.setProperty('--' + area + '-colour', `rgb(${c[0]}, ${c[1]}, ${c[2]})`);
     let hexC = '#';
     for (let i = 0; i < c.length; i++) {
@@ -314,7 +314,7 @@ function resetColours() {
     setCookie('pf-fg', [12, 45, 126], 365);
     setCookie('pf-bg', [4, 97, 123], 365);
     setCookie('pf-text', [255, 255, 255], 365);
-    changeColour('pf-fg');
-    changeColour('pf-bg');
-    changeColour('pf-text');
+    changeColour('fg');
+    changeColour('bg');
+    changeColour('text');
 }
