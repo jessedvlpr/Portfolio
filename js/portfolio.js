@@ -246,12 +246,15 @@ function toggleExpBox(e) {
 function openExpBox(e) {
     expBoxIsOpen = true;
     openBox = e;
-    expBox.innerHTML = e.id
+    let el = document.createElement('p');
+    el.textContent = e.id;
+    expBox.appendChild(el);
     expBox.style.width = `100%`;
 }
 
 function closeExpBox(e) {
     expBoxIsOpen = false;
+    setTimeout(function () { expBox.innerHTML = ""; }, 500);
     expBox.style.width = "0px";
 }
 
