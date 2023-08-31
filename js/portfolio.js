@@ -4,13 +4,13 @@ let mainContainer = document.getElementById('projects')
 let projectsData = JSON.parse(data)
 let tagarr = []
 
-if (!checkCookie('fg')) setCookie('fg', [12, 45, 126], 365);
-if (!checkCookie('bg')) setCookie('bg', [4, 97, 123], 365);
-if (!checkCookie('text')) setCookie('text', [255, 255, 255], 365);
+if (!checkCookie('pf-fg')) setCookie('pf-fg', [12, 45, 126], 365);
+if (!checkCookie('pf-bg')) setCookie('pf-bg', [4, 97, 123], 365);
+if (!checkCookie('pf-text')) setCookie('pf-text', [255, 255, 255], 365);
 
-changeColour('fg')
-changeColour('bg')
-changeColour('text')
+changeColour('pf-fg')
+changeColour('pf-bg')
+changeColour('pf-text')
 
 for (let i = 0; i < ribbons.length; i++) {
     ribbons[i].onclick = function () {
@@ -311,10 +311,10 @@ function changeColour(area) {
 }
 
 function resetColours() {
-    setCookie('fg', [12, 45, 126], 365);
-    setCookie('bg', [4, 97, 123], 365);
-    setCookie('text', [255, 255, 255], 365);
-    changeColour('fg');
-    changeColour('bg');
-    changeColour('text');
+    setCookie('pf-fg', [12, 45, 126], 365);
+    setCookie('pf-bg', [4, 97, 123], 365);
+    setCookie('pf-text', [255, 255, 255], 365);
+    changeColour('pf-fg');
+    changeColour('pf-bg');
+    changeColour('pf-text');
 }
