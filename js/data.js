@@ -49,21 +49,10 @@ data = `
             "node",
             "javascript"
         ],
-        "description": "",
+        "description": "React.js and Node.js web application based on the MERN stack to host many similar games to the once-popular 'Wikipedia Game', a game where people would choose 2 random Wikipedia articles and try to navigate from one to the other through links located on the page in the least amount of redirects as you can.",
         "thumbnail": "./thumbnails/",
         "weblink": "https://races.wiki",
-        "repolink": "https://github.com/jessegroves123/"
-    },
-    "5": {
-        "title": "Intrex",
-        "constraints": [
-            "java",
-            "application"
-        ],
-        "description": "",
-        "thumbnail": "./thumbnails/GlyphCrafter.png",
-        "weblink": "https://jessegroves123.github.io/GlyphCrafter/",
-        "repolink": "https://github.com/jessegroves123/GlyphCrafter"
+        "repolink": ""
     }
 }
 `
