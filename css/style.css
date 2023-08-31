@@ -337,6 +337,14 @@ path {
     width: fit-content;
 }
 
+.popup>a{
+    /* text-decoration: none; */
+    color: var(--text-colour);
+}
+.popup>a:hover{
+    color: color-mix(in srgb, var(--text-colour), rgb(20,20,20));
+}
+
 footer {
     padding: 20px;
     margin-top: 100px;

@@ -209,6 +209,16 @@ function createPopup(project) {
 
     let descriptionElement = document.createElement('div')
     descriptionElement.textContent = description
+    
+    let weblinkElement = document.createElement('a')
+    weblinkElement.textContent = weblink
+    weblinkElement.href = weblink
+    weblinkElement.target = '_blank'
+
+    let repolinkElement = document.createElement('a')
+    repolinkElement.textContent = repolink
+    repolinkElement.href = repolink
+    repolinkElement.target = '_blank'
 
     let closeElement = document.createElement('a')
     closeElement.style.position = "absolute"
@@ -223,6 +233,8 @@ function createPopup(project) {
     element.appendChild(titleElement)
     element.appendChild(tagsElement)
     element.appendChild(descriptionElement)
+    element.appendChild(weblinkElement)
+    element.appendChild(repolinkElement)
     element.appendChild(closeElement)
 
     document.body.appendChild(element)
