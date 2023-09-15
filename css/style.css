@@ -139,8 +139,8 @@ path {
     background-color: var(--fg-colour);
     box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20, 20, 20)) 5px 5px 20px -5px;
     aspect-ratio: 1/1;
-    height: 2.5em;
-    line-height: 2.5em;
+    height: 2em;
+    line-height: 2em;
     border-radius: 50%;
 }
 
@@ -153,6 +153,7 @@ path {
 
 #navbar-widget {
     position: absolute;
+    font-size: 20px;
     z-index: 3;
     top: 0;
     left: 350px;
@@ -209,9 +210,13 @@ path {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(0, 0, 0));
 }
 
-#socials a:hover path {
-    stroke: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
-    fill: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+#socials i {
+    font-size: 40px;
+    margin: 5px;
+}
+
+#socials a:hover {
+    color: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
 }
 
 #screen-cover {
@@ -238,7 +243,7 @@ path {
 }
 
 #experience .exp-highlight {
-    transition: background-color .25s;
+    transition: background-color .25s, color .25s;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
@@ -250,9 +255,13 @@ path {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
 }
 
-#experience .exp-highlight:hover path {
-    fill: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
-    stroke: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+#experience .exp-highlight:hover {
+    color: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
+}
+
+#experience i {
+    font-size: 70px;
+    margin: 5px;
 }
 
 #experience p {
@@ -348,7 +357,6 @@ path {
 footer {
     padding: 20px;
     margin-top: 100px;
-    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     background-color: var(--fg-colour);
     box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20, 20, 20)) 0px -10px 20px 0px;
     color: var(--text-colour);
