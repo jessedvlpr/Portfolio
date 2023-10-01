@@ -48,7 +48,7 @@
             </div>
         </div>
         <header>
-            <div id="ribbons" class="absolute-centered-x">
+            <div id="ribbons" ">
                 <div id="about-ribbon" class="ribbon">About Me</div>
                 <div id="projects-ribbon" class="ribbon">Projects</div>
                 <div id="experience-ribbon" class="ribbon">Experience</div>
@@ -57,11 +57,8 @@
             </div>
         </header>
         <div id="wrapper">
-            <noscript>Please enable JavaScript to view the full website's functionality.</noscript>
-            <div id="top">
-                <section id="constraints"></section>
-            </div>
             <div id="main">
+                <noscript>Please enable JavaScript to view the website's full functionality.</noscript>
                 <section class="main-text-box" id="about">
                     <p>
                     <h2>Hello, I'm Jesse, a Computer Programmer and 'IoT Tinkerer'.</h2><br>
@@ -78,61 +75,62 @@
                     including WiFi and Bluetooth capabilities.
                     </p>
                 </section>
-                <section class="main-text-box" id="projects"></section>
+                <section class="main-text-box" id="projects">
+                    <section id="constraints"></section>
+                </section>
                 <section class="main-text-box" id="experience">
-                    <div id="java-exp-container" onclick='toggleExpBox(this)'>
-                        <div class="exp-highlight">
-                            <i class="fa-brands fa-java"></i><br>
+                    <div id="java-exp-container" class="exp-container" onclick='toggleExpBox(this)'>
+                        <div class="exp-image">
+                            <i class="fa-brands fa-java"></i>
                             <p>Java</p>
                         </div>
-                        <template class="exp-box-text"></template>
+                        <div class="exp-box"></div>
                     </div>
-                    <div id="web-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
+                    <div id="web-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-box"></div>
+                        <div class="exp-image">
                             <i class="fa-brands fa-html5"></i>
                             <i class="fa-brands fa-css3-alt"></i>
-                            <i class="fa-brands fa-js"></i><br>
+                            <i class="fa-brands fa-js"></i>
                             <p>Web Development</p>
                         </div>
-                        <template class="exp-box-text"></template>
                     </div>
-                    <div id="android-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
-                            <i class="fa-brands fa-android"></i><br>
+                    <div id="android-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-image">
+                            <i class="fa-brands fa-android"></i>
                             <p>Android</p>
                         </div>
-                        <template class="exp-box-text"></template>
+                        <div class="exp-box"></div>
                     </div>
-                    <div id="devops-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
+                    <div id="devops-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-box"></div>
+                        <div class="exp-image">
                             <i class="fa-brands fa-git-alt"></i>
-                            <i class="fa-brands fa-docker"></i><br>
+                            <i class="fa-brands fa-docker"></i>
                             <p>DevOps</p>
                         </div>
-                        <template class="exp-box-text"></template>
                     </div>
-                    <div id="python-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
-                            <i class="fa-brands fa-python"></i><br>
+                    <div id="python-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-image">
+                            <i class="fa-brands fa-python"></i>
                             <p>Python</p>
                         </div>
-                        <template class="exp-box-text"></template>
+                        <div class="exp-box"></div>
                     </div>
-                    <div id="linux-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
-                            <i class="fa-brands fa-linux"></i><br>
+                    <div id="linux-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-box"></div>
+                        <div class="exp-image">
+                            <i class="fa-brands fa-linux"></i>
                             <p>Linux</p>
                         </div>
-                        <template class="exp-box-text"></template>
                     </div>
-                    <div id="database-exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-highlight">
-                            <i class="fa fa-database"></i><br>
+                    <div id="database-exp-container" class="exp-container" onclick="toggleExpBox(this)">
+                        <div class="exp-image">
+                            <i class="fa fa-database"></i>
                             <p>Data Management</p>
                         </div>
-                        <template class="exp-box-text"></template>
+                        <div class="exp-box"></div>
                     </div><br>
-                    <div id="exp-box"></div>
                 </section>
                 <section class="main-text-box" id="education">
                     <p>
@@ -159,12 +157,13 @@
         <footer>
             <hr>
             <a href="mailto:grovesjesse@gmail.com">Contact Me</a>
-            <a href="https://icons8.com/">Icons8</a>
+            <a href="https://fontawesome.com/">Font Awesome</a>
             <p>Jesse Groves © 2023</p>
         </footer>
     </body>
     <script src="js/data.js"></script>
-    <script src="js/portfolio.js"></script>
+    <script src="js/cookies.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/index.js"></script>
 
 </html>

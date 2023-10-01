@@ -1,8 +1,5 @@
-let ribbons = document.getElementsByClassName('ribbon')
-let topContainer = document.getElementById('top')
-let mainContainer = document.getElementById('projects')
 let projectsData = JSON.parse(data)
-let tagarr = []
+let tagarr = ["Python", "JavaScript", "Java", "C#", "RDBMS"]
 
 if (!checkCookie('pf-fg')) setCookie('pf-fg', [12, 45, 126], 365);
 if (!checkCookie('pf-bg')) setCookie('pf-bg', [4, 97, 123], 365);
@@ -12,32 +9,42 @@ changeColour('fg')
 changeColour('bg')
 changeColour('text')
 
-for (let i = 0; i < ribbons.length; i++) {
-    ribbons[i].onclick = function () {
+for (let i = 0; i < document.getElementsByClassName('ribbon').length; i++) {
+    document.getElementsByClassName('ribbon')[i].classList.add('bottom-shadow');
+    document.getElementsByClassName('ribbon')[i].classList.add('inactive-text');
+    document.getElementsByClassName('ribbon')[i].onclick = function () {
         ribbonClicked(this)
-
     }
-    ribbons[i].onmouseenter = function () {
+    document.getElementsByClassName('ribbon')[i].onmouseenter = function () {
         if (!this.classList.contains('toggled')) {
             this.style.paddingTop = 20 + "px"
         }
     }
-    ribbons[i].onmouseleave = function () {
+    document.getElementsByClassName('ribbon')[i].onmouseleave = function () {
         if (!this.classList.contains('toggled')) {
             this.style.paddingTop = 10 + "px"
         }
     }
-    ribbons[i].classList.remove('toggled')
+    document.getElementsByClassName('ribbon')[i].classList.remove('toggled')
 }
-ribbonClicked(document.getElementById('about-ribbon'))
+
+document.getElementById('about-ribbon').classList.add('toggled');
+document.getElementById('about-ribbon').classList.add('active-text');
+document.getElementById('about-ribbon').classList.remove('inactive-text');
+document.getElementById('about-ribbon').classList.remove('bottom-shadow');
+document.getElementById('about-ribbon').style.paddingTop = 20 + "px";
+document.getElementById('about').style.display = 'block';
+document.getElementById('main').style.height = document.getElementById('about').clientHeight + "px";
+window.onresize = function () {
+    document.getElementById('main').style.height = 'fit-content';
+    let ribbon = document.getElementsByClassName("toggled")[0].id.split("-")[0];
+    let newHeight = document.getElementById(ribbon).clientHeight;
+    document.getElementById('main').style.height = newHeight + "px";
+};
 
 function ribbonClicked(el) {
     if (el.classList.contains('toggled')) return;
     let els = el.parentElement.getElementsByTagName('*');
-    mainContainer.innerHTML = "";
-    mainContainer.removeAttribute("style");
-    topContainer.innerHTML = "";
-    topContainer.removeAttribute("style");
 
     el.classList.add('toggled');
     el.style.paddingTop = 20 + "px";
@@ -45,33 +52,30 @@ function ribbonClicked(el) {
     el.classList.remove('inactive-text');
     el.classList.add('active-text');
 
-    document.getElementById('about').style.display = 'none';
-    document.getElementById('projects').style.display = 'none';
-    document.getElementById('experience').style.display = 'none';
-    document.getElementById('education').style.display = 'none';
-    document.getElementById('contact').style.display = 'none';
-
-
+    Array.from(document.getElementsByClassName('ribbon')).forEach(e => {
+        document.getElementById(e.id.split("-")[0]).style.display = 'none';
+        document.getElementById(e.id.split("-")[0]).style.opacity = '0';
+    });
+    
     let ribbon = el.id.split("-")[0];
-    switch (ribbon) {
-        case "about":
-            document.getElementById('about').style.display = 'block';
-            break;
-        case "projects":
-            document.getElementById('projects').style.display = 'block';
+    
+    document.getElementById(ribbon).style.height = "fit-content";
+    document.getElementById(ribbon).style.display = 'block';
+    switch (ribbon){
+        case 'projects':
             populateProjects(ribbon);
             populateConstraints();
             break;
-        case "experience":
-            document.getElementById('experience').style.display = 'block';
-            break;
-        case "education":
-            document.getElementById('education').style.display = 'block';
-            break;
-        case "contact":
-            document.getElementById('contact').style.display = 'block';
+        case 'experience':
+            Array.from(document.getElementsByClassName('exp-box')).forEach(e => {
+            })
             break;
     }
+    let startHeight =  document.getElementById(ribbon).scrollHeight + "px";
+    let endHeight = document.getElementById(ribbon).scrollHeight + "px";
+
+    document.getElementById('main').style.height = endHeight;
+    document.getElementById(ribbon).style.opacity = "100";
 
     for (let i = 0; i < els.length; i++) {
         if (els[i] == el) continue;
@@ -84,7 +88,7 @@ function ribbonClicked(el) {
 }
 
 function populateConstraints() {
-    topContainer.innerHTML = "";
+    document.getElementById('constraints').innerHTML = '';
     let cons = [];
 
     for (let i = 0; i < tagarr.length; i++) {
@@ -107,36 +111,33 @@ function populateConstraints() {
             cons.splice(cons.indexOf(tagarr[i]), 1)
             populateProjects(cons)
         }
-        topContainer.appendChild(tag)
+        document.getElementById('constraints').appendChild(tag)
     }
 }
 function populateProjects(constraints) {
-    mainContainer.innerHTML = ""
-
+    let projects = document.getElementsByClassName('project');
+    Array.from(projects).forEach(e => {
+        e.remove();
+    });
+    
     for (let i = 0; i < Object.keys(projectsData).length; i++) {
         let project = projectsData[Object.keys(projectsData)[i]]
-        if (!constraints.includes('projects') && !constraints.every(r => project["constraints"].includes(r))) continue
-
+        if (!constraints.includes('projects') && !constraints.every(r => project["constraints"].map(e => e.toLowerCase()).includes(r.toLowerCase()))) continue
+        
         for (let j = 0; j < project["constraints"].length; j++) {
-            if (!tagarr.includes(project["constraints"][j]) && !constraints.includes(project["constraints"][j])) {
+            if (!tagarr.map(e => e.toLowerCase()).includes(project["constraints"][j].toLowerCase()) && !constraints.includes(project["constraints"][j])) {
                 // if (!tagarr.includes(project["constraints"][j])) {
                 tagarr.push(project["constraints"][j])
             }
         }
         let projectElement = createProject(project)
-        mainContainer.appendChild(projectElement)
-        let tags = projectElement.getElementsByClassName("tag")
-    }
-
-    if (mainContainer.childNodes.length <= 0) {
-        mainContainer.innerHTML = "No projects found."
+        document.getElementById('projects').appendChild(projectElement)
     }
 }
 
 function createProject(project) {
     let element = document.createElement('div')
     element.classList.add("project")
-    element.style.zIndex = "0"
 
     let elementTitle = document.createElement('h2')
     elementTitle.textContent = project["title"]
@@ -164,9 +165,12 @@ function createProject(project) {
     elementTags.style.maxHeight = "35px"
     elementTags.style.overflow = "hidden"
     // console.log(project["constraints"])
-    for (let i = 0; i < project["constraints"].length; i++) {
+    let tags = project["constraints"].sort(function (a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+    for (let i = 0; i < tags.length; i++) {
         let tag = document.createElement('p')
-        tag.textContent = project["constraints"][i]
+        tag.textContent = tags[i]
         tag.classList.add("tag")
         elementTags.appendChild(tag)
     }
@@ -189,7 +193,9 @@ function createPopup(project) {
 
     let thumbnail = project["thumbnail"]
     let title = project["title"]
-    let tags = project["constraints"]
+    let tags = project["constraints"].sort(function (a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
     let description = project["description"]
     let weblink = project["weblink"]
     let repolink = project["repolink"]
@@ -238,67 +244,6 @@ function createPopup(project) {
     element.appendChild(closeElement)
 
     document.body.appendChild(element)
-}
-
-let expBoxIsOpen = false;
-let expBox = document.getElementById('exp-box');
-let openBox;
-function toggleExpBox(e) {
-    if (expBoxIsOpen) {
-        closeExpBox();
-        if (e != openBox) {
-            setTimeout(function () { openExpBox(e) }, 500);
-        }
-    }
-    else {
-        openExpBox(e);
-    }
-}
-
-function openExpBox(e) {
-    expBoxIsOpen = true;
-    openBox = e;
-    let el = document.createElement('p');
-    el.textContent = e.id;
-    expBox.appendChild(el);
-    expBox.style.width = `100%`;
-}
-
-function closeExpBox(e) {
-    expBoxIsOpen = false;
-    setTimeout(function () { expBox.innerHTML = ""; }, 500);
-    expBox.style.width = "0px";
-}
-
-function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-function getCookie(name) {
-    let n = name + "=";
-    let ca = decodeURIComponent(document.cookie).split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(n) == 0) {
-            return c.substring(n.length, c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookie(name) {
-    let cookie = getCookie(name);
-    if (cookie != "" && cookie != null) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 function colourPicker(area) {
