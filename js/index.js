@@ -27,14 +27,16 @@ for (let i = 0; i < document.getElementsByClassName('ribbon').length; i++) {
     }
     document.getElementsByClassName('ribbon')[i].classList.remove('toggled')
 }
-
-document.getElementById('about-ribbon').classList.add('toggled');
-document.getElementById('about-ribbon').classList.add('active-text');
-document.getElementById('about-ribbon').classList.remove('inactive-text');
-document.getElementById('about-ribbon').classList.remove('bottom-shadow');
-document.getElementById('about-ribbon').style.paddingTop = 20 + "px";
-document.getElementById('about').style.display = 'block';
-document.getElementById('main').style.height = document.getElementById('about').clientHeight + "px";
+window.onload = function () {
+    document.getElementById('about-ribbon').classList.add('toggled');
+    document.getElementById('about-ribbon').classList.add('active-text');
+    document.getElementById('about-ribbon').classList.remove('inactive-text');
+    document.getElementById('about-ribbon').classList.remove('bottom-shadow');
+    document.getElementById('about-ribbon').style.paddingTop = 20 + "px";
+    document.getElementById('about').style.display = 'block';
+    let mainHeight = document.getElementById('about').clientHeight + "px"
+    document.getElementById('main').style.height = mainHeight;
+}
 window.onresize = function () {
     document.getElementById('main').style.height = 'fit-content';
     let ribbon = document.getElementsByClassName("toggled")[0].id.split("-")[0];
@@ -133,6 +135,8 @@ function populateProjects(constraints) {
         let projectElement = createProject(project)
         document.getElementById('projects').appendChild(projectElement)
     }
+    let endHeight = document.getElementById('projects').scrollHeight + "px";
+    document.getElementById('main').style.height = endHeight;
 }
 
 function createProject(project) {
@@ -219,11 +223,13 @@ function createPopup(project) {
     let weblinkElement = document.createElement('a')
     weblinkElement.textContent = weblink
     weblinkElement.href = weblink
+    weblinkElement.style.width = 'fit-content';
     weblinkElement.target = '_blank'
 
     let repolinkElement = document.createElement('a')
     repolinkElement.textContent = repolink
     repolinkElement.href = repolink
+    repolinkElement.style.width = 'fit-content';
     repolinkElement.target = '_blank'
 
     let closeElement = document.createElement('a')
