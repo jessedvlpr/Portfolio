@@ -38,6 +38,33 @@ data = `
         "repolink": "https://github.com/jessegroves123/GlyphCrafter"
     },
     "4": {
+        "title": "Solitaire",
+        "constraints": [
+            "javascript",
+            "vanilla",
+            "website",
+            "agile",
+            "team",
+            "game"
+        ],
+        "description": "A group software development project for a class in the Algonquin College Computer Programming course. This project had the guidelines of implementing a proper game of solitaire, with most if not all functionality complete. The class emulated a real company's workflow, which helped in developing the skills for certain tools and exercises like Microsoft Teams, and writing reports. I was designated the role of a coder for this project, where I did most of the contribution in that role, developing the logic for most of the game. The final product is (as of writing this) hosted on my teammates github pages.",
+        "thumbnail": "./thumbnails/",
+        "weblink": "https://mguitor.github.io",
+        "repolink": ""
+    },
+    "5": {
+        "title": "Java Chess",
+        "constraints": [
+            "java",
+            "swing",
+            "game"
+        ],
+        "description": "This is one of my first larger programming projects. A crude chess game made with Java in the NetBeans IDE, using Swing for the GUI. I've come a long way from what is shown in this code, but it was a fun learning experience looking back on how I used to write.",
+        "thumbnail": "./thumbnails/",
+        "weblink": "",
+        "repolink": "https://github.com/jessegroves123/Highschool_Java-Chess"
+    },
+    "6": {
         "title": "Wiki Races",
         "constraints": [
             "MERN",
