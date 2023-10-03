@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Jesse Groves</title>
-        <link rel="icon" href="favicon.png">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/animations.css">
-        <link rel="stylesheet" href="css/globals.css">
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css  ">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jesse Groves</title>
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css  ">
+</head>
 
-    <body>
-        <div id="screen-cover"></div>
-        <div id="navbar">
-            <div class="circle-button" id="navbar-widget" onclick="toggleNavbar()">
-                <i class="fa fa-bars"></i>
-            </div>
-            <div id="logo">
-
-            </div>
-            <a class="navbutton" href="./files/Resume.pdf" download onclick="toggleNavbar()">Download Resume (144kb)</a>
-            <a class="navbutton" href="/" onclick="toggleNavbar()">Home</a>
-            <a class="navbutton" href="/Portfolio/" onclick="toggleNavbar()">Portfolio</a>
-            <a class="navbutton" href="/GlyphCrafter/" onclick="toggleNavbar()">GlyphCrafter</a>
-            <a class="navbutton" href="/IdeaGenerator/" onclick="toggleNavbar()">Idea Generator</a>
-            <div id="colour-picker-box">
-                <label for="colour-picker-fg">Foreground Colour</label>
-                <input class="colour-picker" oninput="colourPicker('pf-fg')" id="colour-picker-fg" type="color"><br>
-                <label for="colour-picker-fg">Background Colour</label>
-                <input class="colour-picker" oninput="colourPicker('pf-bg')" id="colour-picker-bg" type="color"><br>
-                <label for="colour-picker-fg">Text Colour</label>
-                <input class="colour-picker" oninput="colourPicker('pf-text')" id="colour-picker-text"
-                    type="color"><br><br>
-                <p><i>Saved as Cookies!</i></p><br>
-                <a class="navbutton" onclick="resetColours(); toggleNavbar()">Reset</a>
-            </div>
-            <div id="socials">
-                <a href="https://github.com/jessegroves123" target="_blank" onclick="toggleNavbar()">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/jessegroves" target="_blank" onclick="toggleNavbar()">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-            </div>
+<body>
+    <div id="screen-cover"></div>
+    <div id="navbar">
+        <div class="circle-button" id="navbar-widget" onclick="toggleNavbar()">
+            <i class="fa fa-bars"></i>
         </div>
-        <header>
-            <div id="ribbons" ">
-                <div id="about-ribbon" class="ribbon">About Me</div>
-                <div id="projects-ribbon" class="ribbon">Projects</div>
-                <div id="experience-ribbon" class="ribbon">Experience</div>
-                <div id="education-ribbon" class="ribbon">Education</div>
-                <div id="contact-ribbon" class="ribbon">Contact Me</div>
-            </div>
-        </header>
-        <div id="wrapper">
-            <div id="main">
-                <noscript>Please enable JavaScript to view the website's full functionality.</noscript>
-                <section class="main-text-box" id="about">
+        <div id="logo">
+
+        </div>
+        <a class="navbutton" href="./files/Resume.pdf" download onclick="toggleNavbar()">Download Resume (144kb)</a>
+        <a class="navbutton" href="/" onclick="toggleNavbar()">Home</a>
+        <a class="navbutton" href="/Portfolio/" onclick="toggleNavbar()">Portfolio</a>
+        <a class="navbutton" href="/GlyphCrafter/" onclick="toggleNavbar()">GlyphCrafter</a>
+        <a class="navbutton" href="/IdeaGenerator/" onclick="toggleNavbar()">Idea Generator</a>
+        <div id="colour-picker-box">
+            <label for="colour-picker-fg">Foreground Colour</label>
+            <input class="colour-picker" oninput="colourPicker('pf-fg')" id="colour-picker-fg" type="color"><br>
+            <label for="colour-picker-fg">Background Colour</label>
+            <input class="colour-picker" oninput="colourPicker('pf-bg')" id="colour-picker-bg" type="color"><br>
+            <label for="colour-picker-fg">Text Colour</label>
+            <input class="colour-picker" oninput="colourPicker('pf-text')" id="colour-picker-text" type="color"><br><br>
+            <p><i>Saved as Cookies!</i></p><br>
+            <a class="navbutton" onclick="resetColours(); toggleNavbar()">Reset</a>
+        </div>
+        <div id="socials">
+            <a href="https://github.com/jessegroves123" target="_blank" onclick="toggleNavbar()">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/jessegroves" target="_blank" onclick="toggleNavbar()">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+    <header>
+        <div id="ribbons">
+            <div id="about-ribbon" class="ribbon">About Me</div>
+            <div id="projects-ribbon" class="ribbon">Projects</div>
+            <div id="experience-ribbon" class="ribbon">Experience</div>
+            <div id="education-ribbon" class="ribbon">Education & Certs</div>
+            <div id="contact-ribbon" class="ribbon">Contact Me</div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="main">
+            <noscript>Please enable JavaScript to view the website's full functionality.</noscript>
+            <section class="main-text-box" id="about">
+                <div id="about-desc">
                     <p>
                     <h2>Hello, I'm Jesse, a Computer Programmer and 'IoT Tinkerer'.</h2><br>
                     I can call myself a Computer Programmer because I've graduated from the
@@ -74,96 +74,131 @@
                     the right fingerprint is detected. I've also used an ESP32 to make some similar projects but now
                     including WiFi and Bluetooth capabilities.
                     </p>
-                </section>
-                <section class="main-text-box" id="projects">
-                    <section id="constraints"></section>
-                </section>
-                <section class="main-text-box" id="experience">
-                    <div id="java-exp-container" class="exp-container" onclick='toggleExpBox(this)'>
-                        <div class="exp-image">
-                            <i class="fa-brands fa-java"></i>
-                            <p>Java</p>
-                        </div>
-                        <div class="exp-box"></div>
+                </div>
+                <div id="about-technologies"></div>
+            </section>
+            <section class="main-text-box" id="projects">
+                <section id="constraints"></section>
+            </section>
+            <section class="main-text-box" id="experience">
+                <div id="java-exp-container" class="exp-container">
+                    <div class="exp-image">
+                        <i class="fa-brands fa-java"></i>
+                        <p>Java</p>
                     </div>
-                    <div id="web-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-box"></div>
-                        <div class="exp-image">
-                            <i class="fa-brands fa-html5"></i>
-                            <i class="fa-brands fa-css3-alt"></i>
-                            <i class="fa-brands fa-js"></i>
-                            <p>Web Development</p>
-                        </div>
+                    <div class="exp-box">
+                        <p>Java is my most familiar language. I learned Java in my highschool computer science classes,
+                            as well as my college classes, and continuing to use it now, totalling about <strong>4
+                                years</strong> of using Java.</p>
                     </div>
-                    <div id="android-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-image">
-                            <i class="fa-brands fa-android"></i>
-                            <p>Android</p>
-                        </div>
-                        <div class="exp-box"></div>
+                </div>
+                <div id="web-exp-container" class="exp-container">
+                    <div class="exp-box">
+                        <p>I'm pretty confident in my fundamental web development abilities with JS/HTML/CSS, this
+                            portfolio site was built using just those three technolgies. I started learning JavaScript
+                            about <strong>2 years</strong> ago, and it has become been my most used language for the
+                            time being, what with the convenience of development because of the web format being an
+                            all-in-one GUI technology. CSS and HTML started at about the same time, as it seemed the
+                            natural course for outputting any of the JavaScript code I wrote.</p>
                     </div>
-                    <div id="devops-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-box"></div>
-                        <div class="exp-image">
-                            <i class="fa-brands fa-git-alt"></i>
-                            <i class="fa-brands fa-docker"></i>
-                            <p>DevOps</p>
-                        </div>
+                    <div class="exp-image">
+                        <i class="fa-brands fa-html5"></i>
+                        <i class="fa-brands fa-css3-alt"></i>
+                        <i class="fa-brands fa-js"></i>
+                        <p>Web Development</p>
                     </div>
-                    <div id="python-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-image">
-                            <i class="fa-brands fa-python"></i>
-                            <p>Python</p>
-                        </div>
-                        <div class="exp-box"></div>
+                </div>
+                <div id="android-exp-container" class="exp-container">
+                    <div class="exp-image">
+                        <i class="fa-brands fa-android"></i>
+                        <p>Android</p>
                     </div>
-                    <div id="linux-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-box"></div>
-                        <div class="exp-image">
-                            <i class="fa-brands fa-linux"></i>
-                            <p>Linux</p>
-                        </div>
+                    <div class="exp-box">
+                        <p>My Android development experience consists of using Android Studio with Java and XML,
+                            connecting to databases with inline-SQL. I only have about <strong>1 year</strong> of
+                            experience in android. But I picked it up very fast, with it being one of my favourite
+                            classes.</p>
                     </div>
-                    <div id="database-exp-container" class="exp-container" onclick="toggleExpBox(this)">
-                        <div class="exp-image">
-                            <i class="fa fa-database"></i>
-                            <p>Data Management</p>
-                        </div>
-                        <div class="exp-box"></div>
-                    </div><br>
-                </section>
-                <section class="main-text-box" id="education">
-                    <p>
-                        I've graduated from Algonquin College of Applied Arts and Technology, earning myself a spot on
-                        the Dean's List for all 4 of the semesters, with a final GPA of 3.88.
-                    </p>
-                </section>
-                <section class="main-text-box" id="contact">
-                    <p>
-                        The best way to contact me is through email!
-                        <a href="mailto:grovesjesse@gmail.com">
-                            Here
-                        </a>
-                    </p>
-                    <div id="contact-email">
-
+                </div>
+                <div id="devops-exp-container" class="exp-container">
+                    <div class="exp-box">
+                        <p>Most, if not all of my projects in the past <strong>4 years</strong> are tracked using git
+                            and uploaded to github, this I make a point of as it has helped much in the past in not only
+                            tracking who gets things done and when, but also provides a great safety net to any project
+                            that has any sensitive infrascructure behind it. With git, you can always keep a backup of
+                            the stable, working code without causing any damage.</p>
+                        <p>Docker is also listed as a DevOps tool, I learned docker (as well as kubernets but I couldn't
+                            find an image for it) in my last year of school and have been playing around with it on and
+                            off since then, totalling about <strong>1 year.</strong></p>
                     </div>
-                    <div id="contact-phone">
-
+                    <div class="exp-image">
+                        <i class="fa-brands fa-git-alt"></i>
+                        <i class="fa-brands fa-docker"></i>
+                        <p>DevOps</p>
                     </div>
-                </section>
-            </div>
+                </div>
+                <div id="python-exp-container" class="exp-container">
+                    <div class="exp-image">
+                        <i class="fa-brands fa-python"></i>
+                        <p>Python</p>
+                    </div>
+                    <div class="exp-box">
+                        <p>Python is a great language, I have the fewest years of experience in this language compared
+                            to my others, sitting at about <strong>1 year</strong>, but in that year I've learned much
+                            about the versatility, and the effectiveness of Python as a weapon in my developer arsenal.
+                        </p>
+                    </div>
+                </div>
+                <div id="linux-exp-container" class="exp-container">
+                    <div class="exp-box">
+                        <p>Linux is a weird one to put in the experience tab, but I think it's a good one to
+                            include, despite not listing 'Windows' even though that is my most used OS. The ability to
+                            navigate and manipulate Linux effectively can be a vital skill when the tool I am hired to
+                            work on is either partially or wholly available in linux. I've had an interest in linux
+                            since highschool when I learned Windows wasn't the only thing out there. I have around
+                            <strong>3 years</strong> experience troubleshooting Operating Systems and making them work
+                            on my various systems.
+                        </p>
+                    </div>
+                    <div class="exp-image">
+                        <i class="fa-brands fa-linux"></i>
+                        <p>Linux</p>
+                    </div>
+                </div>
+                <div id="database-exp-container" class="exp-container">
+                    <div class="exp-image">
+                        <i class="fa fa-database"></i>
+                        <p>Data Management</p>
+                    </div>
+                    <div class="exp-box">
+                        <p>I have experience in a multitude of Database Management Systems, including MySQL, Oracle, and
+                            MongoDB. I am glad I have the skills in those 3 specifically, as they are each of a
+                            different kind. MySQL being an RDBMS, Oracle being Multi-model, and Mongo being
+                            document-based. Working with all 3 types like this is a great asset, as it gave me much
+                            versatility when it comes to DBMS'. I've worked with these DBMS' since first term of
+                            college, so about <strong>2 years</strong> total.</p>
+                    </div>
+                </div><br>
+            </section>
+            <section class="main-text-box" id="education">
+                <p>I've graduated from Algonquin College of Applied Arts and Technology, earning myself a spot on
+                    the Dean's List for all 4 of the semesters, with a final GPA of 3.88.
+                </p>
+            </section>
+            <section class="main-text-box" id="contact">
+            </section>
         </div>
-        <footer>
-            <hr>
-            <a href="mailto:grovesjesse@gmail.com">Contact Me</a>
-            <a href="https://fontawesome.com/">Font Awesome</a>
-            <p>Jesse Groves © 2023</p>
-        </footer>
-    </body>
-    <script src="js/data.js"></script>
-    <script src="js/cookies.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/index.js"></script>
+    </div>
+    <footer>
+        <hr>
+        <a href="mailto:grovesjesse@gmail.com">Contact Me</a>
+        <a href="https://fontawesome.com/">Font Awesome</a>
+        <p>Jesse Groves © 2023</p>
+    </footer>
+</body>
+<script src="js/data.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/index.js"></script>
 
 </html>
