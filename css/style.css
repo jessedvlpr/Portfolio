@@ -8,7 +8,7 @@
     width: 10px;
 }
 
-::-webkit-scrollbar:horizontal{
+::-webkit-scrollbar:horizontal {
     display: none;
 }
 
@@ -53,8 +53,10 @@ section {
     height: 100%;
 }
 
-#wrapper{
+#wrapper {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #main {
@@ -86,6 +88,63 @@ section {
     display: none;
     transition: opacity 2s;
     opacity: 100;
+}
+
+#play {
+    flex: 1 1 auto;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-left: calc(10% - 30px);
+    margin-right: calc(10% + 30px);
+    width: calc(80% + 60px);
+    min-height: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--bg-colour), color-mix(in srgb, var(--bg-colour), rgba(0, 0, 0, 0.3)));
+    border-right-width: 3px;
+    border-left-width: 3px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    transition: border-color 1s;
+}
+
+#play-button {
+    cursor: pointer;
+    user-select: none;
+    aspect-ratio: 1/1;
+    width: 5%;
+}
+
+#play-button-svg {
+    height: 100%;
+    width: 100%;
+    -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    background-color: color-mix(in srgb, var(--bg-colour), color-mix(in srgb, var(--bg-colour), rgba(0, 0, 0, .3)));
+    transition: background-color .25s;
+}
+
+#play-button:hover #play-button-svg {
+    background-color: var(--fg-colour);
+}
+
+#game-score {
+    font-size: 50px;
+    color: color-mix(in srgb, var(--bg-colour), color-mix(in srgb, var(--bg-colour), rgba(0, 0, 0, .6)));
+    margin-top: 20px;
+    width: max-content;
+    transition: color .25s;
+}
+
+.game-item {
+    z-index: -1;
+    border-radius: 5px;
+    pointer-events: none;
+    background-color: color-mix(in srgb, var(--bg-colour), color-mix(in srgb, var(--bg-colour), rgba(0, 0, 0, .3)));
+    transition: background-color 1s;
 }
 
 #ribbons {
@@ -234,6 +293,23 @@ section {
     pointer-events: none;
 }
 
+#about {
+    text-align: center;
+}
+
+#about-technologies>h2 {
+    user-select: text;
+}
+
+#about-technologies {
+    user-select: none;
+}
+
+#about-technologies>i {
+    margin: 5px;
+    font-size: 60px;
+}
+
 #experience>div {
     position: relative;
     display: table;
@@ -273,7 +349,7 @@ section {
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
 }
 
-.exp-box > *{
+.exp-box>* {
     margin: 20px;
 }
 
@@ -304,8 +380,6 @@ section {
     padding-left: 5px;
     padding-right: 5px;
     margin: 2px;
-    -webkit-user-select: none;
-    user-select: none;
     text-align: center;
     font-size: 16px;
     background-color: color-mix(in srgb, var(--fg-colour), rgb(20, 20, 20));
@@ -339,22 +413,22 @@ section {
     width: fit-content;
 }
 
-.popup>a{
+.popup>a {
     /* text-decoration: none; */
     color: var(--text-colour);
 }
-.popup>a:hover{
-    color: color-mix(in srgb, var(--text-colour), rgb(20,20,20));
+
+.popup>a:hover {
+    color: color-mix(in srgb, var(--text-colour), rgb(20, 20, 20));
 }
 
-#contact{
+#contact {
     text-align: center;
     font-size: 50px;
 }
 
 footer {
     padding: 20px;
-    margin-top: 100px;
     background-color: var(--fg-colour);
     box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20, 20, 20)) 0px -10px 20px 0px;
     color: var(--text-colour);
@@ -385,17 +459,19 @@ hr {
 }
 
 @media only screen and (max-width: 768px) {
-    #experience>div{
+    #experience>div {
         display: block !important;
         width: 100%;
         margin-bottom: 10px;
     }
-    .exp-box{
+
+    .exp-box {
         margin: 0px !important;
         display: block !important;
         padding-top: 80px;
     }
-    .exp-image{
+
+    .exp-image {
         display: block !important;
         position: absolute;
         width: 100% !important;
@@ -403,7 +479,8 @@ hr {
         left: 50%;
         transform: translateX(-50%);
     }
-    .exp-image i{
+
+    .exp-image i {
         font-size: 30px !important;
     }
 }

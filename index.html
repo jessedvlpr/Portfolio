@@ -60,7 +60,7 @@
             <noscript>Please enable JavaScript to view the website's full functionality.</noscript>
             <section class="main-text-box" id="about">
                 <div id="about-desc">
-                    <p>
+                    <p on>
                     <h2>Hello, I'm Jesse, a Computer Programmer and 'IoT Tinkerer'.</h2><br>
                     I can call myself a Computer Programmer because I've graduated from the
                     Computer Programming course at Algonquin College of Applied Arts and Technology, and earned
@@ -74,8 +74,21 @@
                     the right fingerprint is detected. I've also used an ESP32 to make some similar projects but now
                     including WiFi and Bluetooth capabilities.
                     </p>
+                </div><br><br>
+                <div id="about-technologies">
+                    <h2>Technologies</h2><br>
+                    <i title="Java" class="fa-brands fa-java"></i>
+                    <i title="JavaScript" class="fa-brands fa-js"></i>
+                    <i title="HTML5" class="fa-brands fa-html5"></i>
+                    <i title="CSS3" class="fa-brands fa-css3-alt"></i>
+                    <i title="Android" class="fa-brands fa-android"></i>
+                    <i title="Windows" class="fa-brands fa-windows"></i>
+                    <i title="Linux" class="fa-brands fa-linux"></i>
+                    <i title="Python" class="fa-brands fa-python"></i>
+                    <i title="Git" class="fa-brands fa-git-alt"></i>
+                    <i title="GitHub" class="fa-brands fa-github"></i>
+                    <i title="Docker" class="fa-brands fa-docker"></i>
                 </div>
-                <div id="about-technologies"></div>
             </section>
             <section class="main-text-box" id="projects">
                 <section id="constraints"></section>
@@ -181,9 +194,32 @@
                 </div><br>
             </section>
             <section class="main-text-box" id="education">
-                <p>I've graduated from Algonquin College of Applied Arts and Technology, earning myself a spot on
-                    the Dean's List for all 4 of the semesters, with a final GPA of 3.88.
-                </p>
+                <u>
+                    <h1>Algonquin College Diploma: Computer Programming (2021-09 > 2022-12)</h1>
+                </u><br>
+                <p>
+                    I've graduated from the Computer Programming course at Algonquin College of Applied Arts and
+                    Technology, with a final GPA of 3.88. The reason for it being lower than a 4.0 was to do with the
+                    complications of online learning during covid, and should not diminish the opinion of my skills in
+                    programming.<br><br>
+                    I also earned myself a spot on the Dean's List for all 4 of the semesters in the course, despite
+                    those complications.
+                </p><br><br>
+                <u>
+                    <h3>Opeongo High School Diploma (2016-09 > 2020-06)</h2>
+                </u><br>
+                <p>
+                    I was placed onto the list of Ontario Scholars when graduating from highschool, describing that I
+                    was able to achieve an average of more than 80% in my top 6 classes.
+                </p><br><br>
+                <hr><br>
+                <u>
+                    <h1>Certifications</h1>
+                </u><br>
+                <ul>
+                    <li><a href="https://www.freecodecamp.org/certification/jessegroves/foundational-c-sharp-with-microsoft"
+                            target="_blank">Foundational C# With Microsoft from freeCodeCamp (2023-09)</a></li>
+                </ul>
             </section>
             <section class="main-text-box" id="contact">
                 <a href="mailto:grovesjesse@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
@@ -191,6 +227,21 @@
                 <a href="https://www.linkedin.com/in/jessegroves/" target="_blank"><i
                         class="fa-brands fa-linkedin"></i></a>
             </section>
+        </div>
+        <div id="play">
+            <div id="game-score" class="absolute-centered-x game-text" style="color: transparent;">0 : 0
+            </div>
+            <div id="play-button" class="absolute-centered-xy" onclick="playGame()">
+                <div id="play-button-svg"></div>
+            </div>
+            <div id="left-stick" class="absolute-centered-y game-item" style="left: 20px; width: 10px; height: 70px;">
+            </div>
+            <div id="right-stick" class="absolute-centered-y game-item" style="right: 20px; width: 10px; height: 70px;">
+            </div>
+            <div id="game-ball" class="absolute-centered-xy game-item" style="aspect-ratio: 1/1; width: 15px; max-width: 3%;
+                -webkit-clip-path: circle(50%);
+                clip-path: circle(50%);">
+            </div>
         </div>
     </div>
     <footer>
