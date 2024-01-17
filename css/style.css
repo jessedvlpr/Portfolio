@@ -70,6 +70,7 @@ section {
     background-color: var(--fg-colour);
     color: var(--text-colour);
     padding: 30px;
+    padding-bottom: 80px;
     border-radius: 10px;
     box-shadow: color-mix(in srgb, var(--bg-colour), rgb(20, 20, 20)) 0px 20px 20px 0px;
     overflow: hidden;
@@ -99,7 +100,7 @@ section {
     margin-left: calc(10% - 30px);
     margin-right: calc(10% + 30px);
     width: calc(80% + 60px);
-    min-height: 100px;
+    min-height: 400px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-style: dashed;
