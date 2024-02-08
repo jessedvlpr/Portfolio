@@ -1,16 +1,21 @@
 let projectsData = JSON.parse(data);
 let tagarr = ["Python", "JavaScript", "Java", "C#", "RDBMS"];
 let play = false;
+let ribbons = Array.from(document.getElementsByClassName('ribbon'));
+
+let params = new Object();
+window.location.search.substring(1).split("&").forEach((e) => { params[e.split('=')[0]] = e.split('=')[1] });
+
 
 if (!checkCookie('pf-fg')) setCookie('pf-fg', [12, 45, 126], 365);
 if (!checkCookie('pf-bg')) setCookie('pf-bg', [4, 97, 123], 365);
 if (!checkCookie('pf-text')) setCookie('pf-text', [255, 255, 255], 365);
 
-changeColour('fg')
-changeColour('bg')
-changeColour('text')
+changeColour('fg');
+changeColour('bg');
+changeColour('text');
 
-for (let i = 0; i < document.getElementsByClassName('ribbon').length; i++) {
+for (let i = 0; i < ribbons.length; i++) {
     document.getElementsByClassName('ribbon')[i].classList.add('bottom-shadow');
     document.getElementsByClassName('ribbon')[i].classList.add('inactive-text');
     document.getElementsByClassName('ribbon')[i].onclick = function () {
@@ -30,14 +35,25 @@ for (let i = 0; i < document.getElementsByClassName('ribbon').length; i++) {
 }
 
 window.onload = function () {
-    document.getElementById('about-ribbon').classList.add('toggled');
-    document.getElementById('about-ribbon').classList.add('active-text');
-    document.getElementById('about-ribbon').classList.remove('inactive-text');
-    document.getElementById('about-ribbon').classList.remove('bottom-shadow');
-    document.getElementById('about-ribbon').style.paddingTop = 20 + "px";
-    document.getElementById('about').style.display = 'block';
-    let mainHeight = document.getElementById('about').clientHeight + "px";
-    document.getElementById('main').style.height = mainHeight;
+    if (ribbons.includes(document.getElementById(params.tab + '-ribbon'))) {
+        document.getElementById(params.tab + '-ribbon').classList.add('toggled');
+        document.getElementById(params.tab + '-ribbon').classList.add('active-text');
+        document.getElementById(params.tab + '-ribbon').classList.remove('inactive-text');
+        document.getElementById(params.tab + '-ribbon').classList.remove('bottom-shadow');
+        document.getElementById(params.tab + '-ribbon').style.paddingTop = 20 + "px";
+        document.getElementById(params.tab).style.display = 'block';
+        let mainHeight = document.getElementById(params.tab).clientHeight + "px";
+        document.getElementById('main').style.height = mainHeight;
+    } else {
+        document.getElementById('about-ribbon').classList.add('toggled');
+        document.getElementById('about-ribbon').classList.add('active-text');
+        document.getElementById('about-ribbon').classList.remove('inactive-text');
+        document.getElementById('about-ribbon').classList.remove('bottom-shadow');
+        document.getElementById('about-ribbon').style.paddingTop = 20 + "px";
+        document.getElementById('about').style.display = 'block';
+        let mainHeight = document.getElementById('about').clientHeight + "px";
+        document.getElementById('main').style.height = mainHeight;
+    }
 }
 
 window.onresize = function () {
@@ -84,11 +100,14 @@ function ribbonClicked(el) {
 
     let ribbon = el.id.split("-")[0];
 
+    window.history.replaceState({}, undefined, window.location.search.replace(params.tab == undefined ? '' : "?tab=" + params.tab, "?tab=" + ribbon));
+    window.location.search.substring(1).split("&").forEach((e) => { params[e.split('=')[0]] = e.split('=')[1] });
+
     document.getElementById(ribbon).style.height = "fit-content";
     document.getElementById(ribbon).style.display = 'block';
     switch (ribbon) {
         case 'projects':
-            populateProjects(ribbon);
+            populateProjects();
             populateConstraints();
             break;
         case 'experience':
@@ -112,6 +131,9 @@ function ribbonClicked(el) {
         els[i].style.paddingTop = 10 + "px";
     }
 }
+
+if (ribbons.includes(document.getElementById(params.tab + '-ribbon'))) ribbonClicked(document.getElementById(params.tab + '-ribbon'));
+else ribbonClicked(document.getElementById('about-ribbon'))
 
 function populateConstraints() {
     document.getElementById('constraints').innerHTML = '';
@@ -142,13 +164,14 @@ function populateConstraints() {
 }
 function populateProjects(constraints) {
     let projects = document.getElementsByClassName('project');
+    constraints == undefined ? constraints = [] : null;
     Array.from(projects).forEach(e => {
         e.remove();
     });
 
     for (let i = 0; i < Object.keys(projectsData).length; i++) {
         let project = projectsData[Object.keys(projectsData)[i]];
-        if (!constraints.includes('projects') && !constraints.every(r => project["constraints"].map(e => e.toLowerCase()).includes(r.toLowerCase()))) continue;
+        if (!constraints.every(r => project["constraints"].map(e => e.toLowerCase()).includes(r.toLowerCase()))) continue;
 
         for (let j = 0; j < project["constraints"].length; j++) {
             if (!tagarr.map(e => e.toLowerCase()).includes(project["constraints"][j].toLowerCase()) && !constraints.includes(project["constraints"][j])) {
