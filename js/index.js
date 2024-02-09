@@ -144,14 +144,14 @@ function populateConstraints() {
         tag.textContent = tagarr[i];
         tag.classList.add('tag');
         tag.classList.add('inactive-text');
-        params.tags.split(',').forEach((e) => {
+        params.tags != undefined ? params.tags.split(',').forEach((e) => {
             if (e == tagarr[i]) {
                 tag.classList.add('toggled');
                 tag.classList.add('active-text');
                 tag.classList.remove('inactive-text');
                 cons.push(tagarr[i]);
             }
-        });
+        }) : null;
         tag.onclick = function () {
 
             if (this.classList.contains('toggled')) {
