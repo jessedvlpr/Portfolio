@@ -1,8 +1,8 @@
 let projectsData = JSON.parse(data);
-let tagarr = ["Python", "JavaScript", "Java", "C#", "RDBMS"];
+let tagarr = ["Python", "JavaScript", "Java", "CSharp", "RDBMS"];
+Object.values(projectsData).forEach((e) => { e.constraints.forEach((e) => { if (!tagarr.map(e => e.toLowerCase()).includes(e)) tagarr.push(e) }) });
 let play = false;
 let ribbons = Array.from(document.getElementsByClassName('ribbon'));
-
 let params = new Object();
 window.location.search.substring(1).split("&").forEach((e) => { params[e.split('=')[0]] = e.split('=')[1] });
 
@@ -144,19 +144,32 @@ function populateConstraints() {
         tag.textContent = tagarr[i];
         tag.classList.add('tag');
         tag.classList.add('inactive-text');
+        params.tags.split(',').forEach((e) => {
+            if (e == tagarr[i]) {
+                tag.classList.add('toggled');
+                tag.classList.add('active-text');
+                tag.classList.remove('inactive-text');
+                cons.push(tagarr[i]);
+            }
+        });
         tag.onclick = function () {
-            if (!this.classList.contains('toggled')) {
+
+            if (this.classList.contains('toggled')) {
+                this.classList.remove('toggled');
+                this.classList.remove('active-text');
+                this.classList.add('inactive-text');
+                cons.splice(cons.indexOf(tagarr[i]), 1);
+            } else {
                 this.classList.add('toggled');
                 this.classList.add('active-text');
                 this.classList.remove('inactive-text');
                 cons.push(tagarr[i]);
-                populateProjects(cons);
-                return;
             }
-            this.classList.remove('toggled');
-            this.classList.remove('active-text');
-            this.classList.add('inactive-text');
-            cons.splice(cons.indexOf(tagarr[i]), 1);
+
+            params.tags == undefined ?
+                window.history.replaceState({}, undefined, window.location.search + "&tags=" + cons.join(',')) :
+                window.history.replaceState({}, undefined, window.location.search.replace("&tags=" + params.tags, "&tags=" + cons.join(',')));
+            window.location.search.substring(1).split("&").forEach((e) => { params[e.split('=')[0]] = e.split('=')[1] });
             populateProjects(cons);
         }
         document.getElementById('constraints').appendChild(tag);
@@ -164,23 +177,15 @@ function populateConstraints() {
 }
 function populateProjects(constraints) {
     let projects = document.getElementsByClassName('project');
-    constraints == undefined ? constraints = [] : null;
-    Array.from(projects).forEach(e => {
-        e.remove();
-    });
+    params.tags == undefined || params.tags == '' ? null : constraints = params.tags.split(',');
+    constraints == undefined || constraints == [''] ? constraints = [] : null;
+    console.log(constraints)
+    Array.from(projects).forEach(e => { e.remove(); });
 
     for (let i = 0; i < Object.keys(projectsData).length; i++) {
         let project = projectsData[Object.keys(projectsData)[i]];
         if (!constraints.every(r => project["constraints"].map(e => e.toLowerCase()).includes(r.toLowerCase()))) continue;
-
-        for (let j = 0; j < project["constraints"].length; j++) {
-            if (!tagarr.map(e => e.toLowerCase()).includes(project["constraints"][j].toLowerCase()) && !constraints.includes(project["constraints"][j])) {
-                // if (!tagarr.includes(project["constraints"][j])) {
-                tagarr.push(project["constraints"][j]);
-            }
-        }
-        let projectElement = createProject(project);
-        document.getElementById('projects').appendChild(projectElement);
+        document.getElementById('projects').appendChild(createProject(project));
     }
     let endHeight = document.getElementById('projects').scrollHeight + "px";
     document.getElementById('main').style.height = endHeight;
